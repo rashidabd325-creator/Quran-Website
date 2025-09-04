@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কুরআন অনলাইন - পবিত্র কুরআনের বাংলা অনুবাদ ও তাফসীর</title>
+    <meta name="description" content="পবিত্র কুরআন বাংলা অনুবাদ এবং তাফসীর সহ পড়ুন, শুনুন এবং বুঝুন। সম্পূর্ণ বিনামূল্যে এবং অফলাইন উপলব্ধ।">
+    <meta name="keywords" content="কুরআন, বাংলা কুরআন, ইসলাম, আল্লাহ, মুসলিম, ধর্ম, পবিত্র কুরআন">
+    <meta name="author" content="কুরআন অনলাইন">
+    <meta property="og:title" content="কুরআন অনলাইন - পবিত্র কুরআনের বাংলা অনুবাদ">
+    <meta property="og:description" content="পবিত্র কুরআন বাংলা অনুবাদ এবং তাফসীর সহ পড়ুন, শুনুন এবং বুঝুন।">
+    <meta property="og:image" content="https://quran-online.netlify.app/images/og-image.jpg">
+    <meta property="og:url" content="https://quran-online.netlify.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <style>
+        /* CSS Variables for theming */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #4CAF50;
+            --accent-color: #ff9800;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: white;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        .dark-theme {
+            --primary-color: #1a2530;
+            --secondary-color: #3e8e41;
+            --accent-color: #ffab40;
+            --text-color: #f0f0f0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sepia-theme {
+            --primary-color: #5a4a42;
+            --secondary-color: #8d6e63;
+            --accent-color: #a1887f;
+            --text-color: #5a4a42;
+            --bg-color: #f5ecd9;
+            --card-bg: #f9f3e9;
+            --box-shadow: 0 2px 10px rgba(90, 74, 66, 0.1);
+        }
+        
+        /* Performance optimized styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        /* Main content area */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 1.5rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+        
+        /* Quran display area */
+        .quran-display {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            min-height: 500px;
+        }
+        
+        /* Verse styling */
+        .verse {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            background-color: rgba(0, 0, 0, 0.03);
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        /* Arabic text */
+        .arabic {
+            font-size: 1.8rem;
+            text-align: right;
+            margin-bottom: 1rem;
+            line-height: 2.5;
+            font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .search-container {
+                width: 100%;
+                margin: 1rem 0;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .arabic {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Loading animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-book-quran"></i> কুরআন অনলাইন
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="সূরা বা আয়াত অনুসন্ধান করুন...">
+                <button id="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" id="bookmarks-btn">বুকমার্ক</a></li>
+                    <li class="settings-dropdown">
+                        <button class="settings-btn">
+                            <i class="fas fa-cog"></i> সেটিংস
+                        </button>
+                    </li>
+                    <li class="user-menu" id="user-menu" style="display: none;">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span id="user-name">ব্যবহারকারী</span>
+                    </li>
+                    <li id="login-link">
+                        <a href="#" id="login-btn">লগইন / রেজিস্টার</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>সূরাসমূহ</h2>
+            <ul class="surah-list" id="surah-list">
+                <li class="active">
+                    <span>সূরা আল-ফাতিহা</span>
+                    <span class="surah-number">1</span>
+                </li>
+                <!-- Additional surahs will be loaded by JavaScript -->
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div>
+            <!-- Quran Display -->
+            <main class="quran-display" id="quran-display">
+                <div class="surah-header">
+                    <h2>সূরা আল-ফাতিহা</h2>
+                    <p>মক্কায় অবতীর্ণ • ৭ আয়াত</p>
+                </div>
+
+                <div class="verse fade-in">
+                    <span class="verse-number">1</span>
+                    <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                    <div class="translation">পরম করুণাময় অসীম দয়ালু আল্লাহর নামে।</div>
+                    <div class="transliteration">Bismillāhir-Raĥmānir-Raĥīm</div>
+                </div>
+
+                <div class="verse fade-in">
+                    <span class="verse-number">2</span>
+                    <div class="arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+                    <div class="translation">সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সকল জগতের প্রতিপালক।</div>
+                    <div class="transliteration">Al-ĥamdu lillāhi Rabbil-'ālamīn</div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>কুরআন অনলাইন - ইসলামিক জ্ঞানের একটি নির্ভরযোগ্য উৎস</p>
+            <p>&copy; ২০২৩ কুরআন অনলাইন। সকল права защищены।</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Performance monitoring
+        const perf = {
+            start: function(name) {
+                performance.mark(name + '-start');
+            },
+            end: function(name) {
+                performance.mark(name + '-end');
+                performance.measure(name, name + '-start', name + '-end');
+            }
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            perf.start('app-init');
+            
+            // Check if the browser supports service workers
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                    }).catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            }
+            
+            // Load initial data
+            loadSurahs();
+            loadSurah(1);
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Initialize analytics
+            initAnalytics();
+            
+            perf.end('app-init');
+            
+            // Log performance metrics
+            const metrics = performance.getEntriesByType('measure');
+            metrics.forEach(measure => {
+                console.log(`${measure.name}: ${measure.duration.toFixed(2)}ms`);
+            });
+        });
+
+        // Initialize analytics
+        function initAnalytics() {
+            // Google Analytics (replace with your tracking ID)
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'GA_TRACKING_ID');
+            
+            // Simple analytics logging
+            console.log('Analytics initialized');
+            
+            // Track page view
+            trackEvent('page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        }
+
+        // Track events
+        function trackEvent(eventName, eventParams) {
+            // Send to Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+            }
+            
+            // Log to console for debugging
+            console.log('Event tracked:', eventName, eventParams);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search functionality
+            document.getElementById('search-button').addEventListener('click', performSearch);
+            document.getElementById('search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            
+            // Other event listeners will be added here
+        }
+
+        // Load all surahs
+        async function loadSurahs() {
+            try {
+                const response = await fetch('https://api.alquran.cloud/v1/surah');
+                const data = await response.json();
+                
+                // Render surah list
+                const surahList = document.getElementById('surah-list');
+                surahList.innerHTML = ''; // Clear existing list
+                
+                data.data.forEach(surah => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span>${surah.englishName} (${surah.name})</span>
+                        <span class="surah-number">${surah.number}</span>
+                    `;
+                    
+                    li.addEventListener('click', () => {
+                        trackEvent('surah_selected', {
+                            surah_number: surah.number,
+                            surah_name: surah.englishName
+                        });
+                        loadSurah(surah.number);
+                    });
+                    surahList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error loading surahs:', error);
+                trackEvent('load_error', {
+                    error_message: 'Failed to load surahs',
+                    error_details: error.message
+                });
+            }
+        }
+
+        // Load a specific surah
+        async function loadSurah(surahNumber) {
+            try {
+                // Show loading state
+                document.getElementById('quran-display').innerHTML = `
+                    <div class="surah-header">
+                        <h2>লোড হচ্ছে...</h2>
+                        <p>অনুগ্রহ করে অপেক্ষা করুন</p>
+                    </div>
+                    <div class="loader"></div>
+                `;
+                
+                const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/editions/quran-uthmani,bn.bengali`);
+                const data = await response.json();
+                
+                if (data.code === 200) {
+                    displaySurah(data.data);
+                    trackEvent('surah_loaded', {
+                        surah_number: surahNumber,
+                        success: true
+                    });
+                } else {
+                    throw new Error('Surah not found');
+                }
+            } catch (error) {
+                console.error('Error loading surah:', error);
+                document.getElementById('quran-display').innerHTML = `
+                    <div class="surah-header">
+                        <h2>ত্রুটি</h2>
+                        <p>সূরা লোড করতে সমস্যা হচ্ছে</p>
+                    </div>
+                `;
+                trackEvent('surah_load_error', {
+                    surah_number: surahNumber,
+                    error_message: error.message
+                });
+            }
+        }
+
+        // Display surah data
+        function displaySurah(surahData) {
+            const arabicSurah = surahData[0];
+            const translationSurah = surahData[1];
+            
+            // Update surah header
+            const headerHTML = `
+                <div class="surah-header">
+                    <h2>${arabicSurah.englishName} (${arabicSurah.name})</h2>
+                    <p>${arabicSurah.revelationType === 'Meccan' ? 'মক্কায় অবতীর্ণ' : 'মদীনায় অবতীর্ণ'} • ${arabicSurah.numberOfAyahs} আয়াত</p>
+                </div>
+            `;
+            
+            // Generate verses HTML
+            let versesHTML = '';
+            
+            for (let i = 0; i < arabicSurah.ayahs.length; i++) {
+                versesHTML += `
+                    <div class="verse fade-in" style="animation-delay: ${i * 0.05}s">
+                        <span class="verse-number">${arabicSurah.ayahs[i].numberInSurah}</span>
+                        <div class="arabic">${arabicSurah.ayahs[i].text}</div>
+                        <div class="translation">${translationSurah.ayahs[i].text}</div>
+                    </div>
+                `;
+            }
+            
+            // Update the display
+            document.getElementById('quran-display').innerHTML = headerHTML + versesHTML;
+            
+            // Track performance
+            perf.end('surah-load');
+        }
+
+        // Search functionality
+        async function performSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            
+            if (query.length === 0) {
+                alert('অনুসন্ধানের জন্য কিছু টাইপ করুন');
+                return;
+            }
+            
+            try {
+                // Show loading state
+                document.getElementById('quran-display').innerHTML = `
+                    <div class="surah-header">
+                        <h2>অনুসন্ধান করা হচ্ছে: "${query}"</h2>
+                        <p>অনুগ্রহ করে অপেক্ষা করুন</p>
+                    </div>
+                    <div class="loader"></div>
+                `;
+                
+                // Track search event
+                trackEvent('search_performed', {
+                    search_query: query
+                });
+                
+                // Search in all surahs
+                const response = await fetch(`https://api.alquran.cloud/v1/search/${query}/all/en`);
+                const data = await response.json();
+                
+                if (data.code === 200 && data.data.matches.length > 0) {
+                    displaySearchResults(data.data.matches, query);
+                    trackEvent('search_success', {
+                        search_query: query,
+                        result_count: data.data.matches.length
+                    });
+                } else {
+                    document.getElementById('quran-display').innerHTML = `
+                        <div class="surah-header">
+                            <h2>অনুসন্ধান ফলাফل</h2>
+                            <p>"${query}" এর জন্য কোনো ফলাফল পাওয়া যায়নি</p>
+                        </div>
+                    `;
+                    trackEvent('search_no_results', {
+                        search_query: query
+                    });
+                }
+            } catch (error) {
+                console.error('Error searching:', error);
+                document.getElementById('quran-display').innerHTML = `
+                    <div class="surah-header">
+                        <h2>ত্রুটি</h2>
+                        <p>অনুসন্ধান করতে সমস্যা হচ্ছে</p>
+                    </div>
+                `;
+                trackEvent('search_error', {
+                    search_query: query,
+                    error_message: error.message
+                });
+            }
+        }
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('Error:', e.error);
+            trackEvent('window_error', {
+                error_message: e.error.message,
+                error_file: e.filename,
+                error_line: e.lineno
+            });
+        });
+
+        // Unhandled promise rejection
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            trackEvent('promise_rejection', {
+                error_message: e.reason.message || String(e.reason)
+            });
+        });
+    </script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+</body>
+</html>
